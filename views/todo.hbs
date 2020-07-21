@@ -1,0 +1,88 @@
+{{#if error}}
+    <p class="alert">{{error}}</p>
+{{/if}}
+<div class="my-chart">
+    <div class="container">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="text-primary font-weight-bold m-0">Список дел</h6>
+            </div>
+
+            <form action="/add" method="post">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-primary">Добавить</button>
+                    </div>
+                    <input autofocus required type="text" name="title" id="title" class="form-control"
+                           aria-label="Text input with radio button" minlength="3" maxlength="100">
+                </div>
+
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+            </form>
+
+
+            <ul class="list-group list-group-flush">
+                {{#if todo.length}}
+                    {{#each todo}}
+
+                        {{#if @root.isAuth}}
+                            {{#ifeq userId._id @root.userId}}
+                                <li class="list-group-item">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <h6 class="mb-0"><strong>{{title}}</strong></h6><span
+                                                class="text-xs">12:30 AM</span></div>
+
+                                        <a href="/todo/{{_id}}/edit?allow=true"><i class="large material-icons">edit</i></a>
+                                        <form action="/todo/delete" method="post">
+                                            <input type="hidden" name="id" value="{{todo._id}}">
+                                            <button type="submit" class="btn btn-primary"><i
+                                                    class="large material-icons">check_circle</i>
+                                            </button>
+
+                                            <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+                                        </form>
+
+                                    </div>
+                                </li>
+                            {{/ifeq}}
+                        {{/if}}
+                    {{/each}}
+                {{else}}
+                    <div>
+                        еще нет ничего
+                    </div>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-7 col-xl-4">
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="text-primary font-weight-bold m-0">Earnings Overview</h6>
+                <div class="dropdown no-arrow">
+                    <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
+                            type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
+                         role="menu">
+                        <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item"
+                                                                                      role="presentation"
+                                                                                      href="#"> Action</a><a
+                            class="dropdown-item" role="presentation" href="#"> Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" role="presentation" href="#"> Something else here</a></div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas height="324" width="367" style="display: block; height: 321px; width: 364px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

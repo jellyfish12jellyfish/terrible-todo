@@ -1,0 +1,55 @@
+<div>
+
+    <form method="post" action="/profile" enctype="multipart/form-data">
+
+        <div class="container">
+            <div class="card-body text-center shadow">
+                {{#if user.avatarUrl}}
+                    <img class="rounded-circle mb-3 mt-4"
+                         width="160"
+                         height="160" src="/{{user.avatarUrl}}"
+                         alt="avatar-{{user.name}}"/>
+                {{else}}
+                    <img class="rounded-circle mb-3 mt-4"
+                         width="160"
+                         height="160"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png"
+                         alt="avatar"/>
+                {{/if}}
+
+                <div class="mb-3">
+                    <label for="file">Выберите файл</label>
+                    <input type="file" name="avatar" class="file" id="file">
+                </div>
+            </div>
+
+
+            <div class="card shadow mb-3">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold">Профиль</p>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="form-group"><label for="username"><strong>Имя</strong></label>
+                                <input class="form-control" id="name" value="{{user.name}}" type="text" name="name"/>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group"><label for="email"><strong>Email</strong></label>
+                                <input
+                                        class="form-control" type="email" placeholder="{{user.email}}" disabled
+                                        name="email"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm" type="submit">Сохранить изменения</button>
+                    </div>
+
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

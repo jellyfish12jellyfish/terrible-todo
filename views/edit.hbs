@@ -1,0 +1,21 @@
+<h1>{{todo.title}}</h1>
+
+<form action="/todo/edit" method="post">
+    <div class="form-group">
+        <input type="text" id="title" name="title" value="{{todo.title}}">
+
+        <input type="hidden" name="id" value="{{todo._id}}">
+        <button type="submit" class="btn btn-primary">Обновить</button>
+    </div>
+
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+</form>
+
+<form action="/todo/delete" method="post">
+    <input type="hidden" name="id" value="{{todo._id}}">
+    <button type="submit" class="btn btn-primary"><i class="large material-icons">check_circle</i>
+    </button>
+
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+</form>
+

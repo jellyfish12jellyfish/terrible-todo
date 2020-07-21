@@ -1,0 +1,21 @@
+{{#if loginError}}
+    <p class="alert">{{loginError}}</p>
+{{/if}}
+
+<div class="login-clean">
+    <form method="post" action="/auth/login">
+        <h2 class="sr-only">Login Form</h2>
+        <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+        <div class="form-group"><input required class="form-control" type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group"><input required class="form-control" type="password" name="password"
+                                       placeholder="Пароль">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Войти</button>
+        </div>
+        <a class="forgot" href="/auth/reset">Забыли пароль?</a>
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+    </form>
+
+</div>
