@@ -98,4 +98,6 @@ todo 4: оживить контакт форм, "забыли пароль"
 todo 5: прижать футер к низу страницы
 todo minlength maxlength for reset password.hbs
 todo create 404.hbs
+todo добавить время создания тудушки, поработать с классом Intl
+todo верстка страницы лимита
  */
