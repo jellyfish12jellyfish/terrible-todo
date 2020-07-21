@@ -100,4 +100,5 @@ todo minlength maxlength for reset password.hbs
 todo create 404.hbs
 todo добавить время создания тудушки, поработать с классом Intl
 todo верстка страницы лимита
+todo запретить формам запоминать данные
  */
