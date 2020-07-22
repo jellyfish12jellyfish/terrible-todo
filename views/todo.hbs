@@ -2,7 +2,9 @@
     <p class="alert">{{error}}</p>
 {{/if}}
 <div class="my-chart">
+
     <div class="container">
+        <!--        start -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="text-primary font-weight-bold m-0">Список дел</h6>
@@ -30,8 +32,9 @@
                                 <li class="list-group-item">
                                     <div class="row align-items-center no-gutters">
                                         <div class="col mr-2">
-                                            <h6 class="mb-0"><strong>{{title}}</strong></h6><span
-                                                class="text-xs">12:30 AM</span></div>
+                                            <h6 class="mb-0"><strong>{{title}}</strong></h6>
+                                            <span class="text-xs toDate">{{updatedAt}}</span>
+                                        </div>
 
                                         <a href="/todo/{{_id}}/edit?allow=true"><i class="large material-icons">edit</i></a>
                                         <form action="/todo/delete" method="post">
@@ -42,7 +45,6 @@
 
                                             <input type="hidden" name="_csrf" value="{{@root.csrf}}">
                                         </form>
-
                                     </div>
                                 </li>
                             {{/ifeq}}
@@ -50,11 +52,52 @@
                     {{/each}}
                 {{else}}
                     <div>
-                        еще нет ничего
+                        <div class="empty-todos">
+                            <img class="empty-todo-svg" src="/img/book.svg" alt="No todos yet">
+                            <p>Список пустует :(</p>
+                        </div>
                     </div>
                 {{/if}}
             </ul>
         </div>
+
+
+        <!--table start-->
+        <table class="table table-striped table-dark">
+        <thead class="thead-dark">
+            {{#if todo.length}}
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+
+            </tr>
+            </thead>
+                <tbody>
+                {{#each todo}}
+                    {{#if @root.isAuth}}
+                        {{#ifeq userId._id @root.userId}}
+                            <tr>
+                                <td>{{title}}</td>
+                                <td style="float: right">
+                                    <span class="toDate">{{updatedAt}}</span>
+                                    <span>Delete</span>
+                                    <span>Edit</span>
+                                </td>
+                            </tr>
+                        {{/ifeq}}
+                    {{/if}}
+                {{/each}}
+                </tbody>
+
+            {{else}}
+                sadjaksdjaskldjfslk
+            {{/if}}
+        </table>
+        <!--table end-->
+
+
+        <!--    end -->
+
     </div>
 
     <div class="col-lg-7 col-xl-4">

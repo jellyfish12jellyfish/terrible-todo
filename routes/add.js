@@ -6,6 +6,7 @@ const {validationResult} = require('express-validator');
 const {todoValidators} = require('../utils/validators')
 
 
+
 router.post('/', auth, todoValidators, async (req, res) => {
     const errors = validationResult(req);
 

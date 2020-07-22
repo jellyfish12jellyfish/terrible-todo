@@ -130,13 +130,28 @@ body > nav > div > a.selected {
 }
 
 
-.error-svg{
+.error-svg {
     max-width: 250px;
     margin: 20px 0 80px 0;
 }
 
-.error{
+.error {
     display: flex;
     flex-direction: row;
 }
 
+div.empty-todos {
+    margin: 0 auto;
+}
+
+img.empty-todo-svg {
+    max-width: 132px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+
+.my-chart{
+    display: flex;
+    flex-direction: column;
+}
