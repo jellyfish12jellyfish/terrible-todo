@@ -151,7 +151,39 @@ img.empty-todo-svg {
 }
 
 
-.my-chart{
+.my-chart {
     display: flex;
     flex-direction: column;
+}
+
+.td {
+    display: flex;
+    flex-direction: row;
+}
+
+.toDate {
+    font-size: 20px;
+    color: #a1a1a1;
+}
+
+.delete-btn {
+    color: #2196F3;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.delete-btn:hover {
+    opacity: 0.7;
+}
+
+.edit-btn {
+    color: #2196F3;
+}
+
+.edit-btn:hover {
+    opacity: 0.7;
 }
