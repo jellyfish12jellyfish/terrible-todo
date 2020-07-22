@@ -2,12 +2,24 @@
     <p class="alert">{{error}}</p>
 {{/if}}
 
-<h1>Забыли пароль?</h1>
-<form action="/auth/reset" method="post">
-    <input type="email" id="email" name="email" required>
-    <label for="email">Введите email адрес</label>
 
+<div class="login-clean-reset">
+    <form action="/auth/reset" method="post">
+        <h3>Забыли пароль?</h3>
 
-    <input type="hidden" name="_csrf" value="{{csrf}}">
-    <button type="submit" class="btn btn-primary">Сбросить</button>
-</form>
+        <div class="form-group">
+
+            <label for="email">Email адрес</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">ОТПРАВИТЬ</button>
+            <small id="emailHelp" class="form-text text-muted">На вашу почту придет инструкция по восстановлению
+                доступа</small>
+        </div>
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+    </form>
+
+</div>

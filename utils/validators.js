@@ -53,3 +53,8 @@ exports.sendContactEmailValidators = [
         min: 10, max: 250
     }).trim()
 ];
+
+exports.resetPasswordWithEmailValidators = [
+    body('email').isEmail().withMessage('Введите корректный email адрес')
+        .normalizeEmail().trim()
+];

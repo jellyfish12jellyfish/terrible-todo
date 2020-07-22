@@ -10,6 +10,7 @@ const nodemailer = require('nodemailer');
 const {validationResult} = require('express-validator');
 const {registerValidators} = require('../utils/validators');
 const {resetPasswordValidators} = require('../utils/validators');
+const {resetPasswordWithEmailValidators} = require('../utils/validators');
 
 
 const transporter = nodemailer.createTransport({
@@ -107,14 +108,36 @@ router.get('/reset', (req, res) => {
     });
 });
 
-router.post('/reset', (req, res) => {
+
+const random = Math.random().toString(16).substring(7);
+
+
+router.get(`/reset-success/:${random}`, async (req, res) => {
     try {
+        await res.render('auth/reset-success', {
+            title: 'Успех!',
+            error: req.flash('error')
+        });
+
+    } catch (e) {
+        console.log(e)
+    }
+});
+
+router.post('/reset', resetPasswordWithEmailValidators, (req, res) => {
+
+    try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            req.flash('error', errors.array()[0].msg);
+            return res.status(422).redirect('/auth/reset');
+        }
+
         crypto.randomBytes(32, async (err, buffer) => {
             if (err) {
                 req.flash('error', 'Что-то пошло не так, попробуйте снова');
                 return res.redirect('/auth/reset');
             }
-
             const token = buffer.toString('hex');
             const candidate = await User.findOne({email: req.body.email});
 
@@ -123,7 +146,7 @@ router.post('/reset', (req, res) => {
                 candidate.resetTokenExp = Date.now() + 60 * 60 * 1000;
                 await candidate.save();
                 await transporter.sendMail(resetEmail(candidate.email, token));
-                res.redirect('/auth/login');
+                return res.redirect(`/auth/reset-success/:${random}`)
             } else {
                 req.flash('error', 'Email адрес не найден');
                 res.redirect('/auth/reset');

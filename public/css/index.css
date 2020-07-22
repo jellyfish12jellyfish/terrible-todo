@@ -1,3 +1,21 @@
+html, body {
+    height: 100%;
+}
+
+/*body {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*footer {*/
+/*    flex: 0 0 auto;*/
+/*}*/
+
+
+.content {
+    flex: 1 0 auto
+}
+
 .my-chart {
     display: flex;
     flex-direction: row;
@@ -107,6 +125,18 @@
     outline: 1px dotted #000;
 }
 
-body > nav > div > a.selected{
+body > nav > div > a.selected {
     text-decoration: underline;
 }
+
+
+.error-svg{
+    max-width: 250px;
+    margin: 20px 0 80px 0;
+}
+
+.error{
+    display: flex;
+    flex-direction: row;
+}
+
