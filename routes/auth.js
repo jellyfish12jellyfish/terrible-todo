@@ -11,6 +11,7 @@ const {validationResult} = require('express-validator');
 const {registerValidators} = require('../utils/validators');
 const {resetPasswordValidators} = require('../utils/validators');
 
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.mail.ru',
     port: 587,

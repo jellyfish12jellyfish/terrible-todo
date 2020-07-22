@@ -7,7 +7,8 @@ const User = require('../models/user');
 router.get('/', (req, res) => {
     res.render('index', {
         title: 'Главная',
-        isHome: true
+        isHome: true,
+        sendContactEmailError: req.flash('sendContactEmailError')
     });
 });
 

@@ -60,7 +60,7 @@
 }
 
 .register-photo form .btn-primary {
-    background: #055ada;
+    background: #292c2f;
 
     border: none;
     border-radius: 4px;
@@ -72,8 +72,8 @@
 }
 
 .register-photo form .btn-primary:hover, .register-photo form .btn-primary:active {
-    background: rgb(0, 71, 177);
-
+    background: #292c2f;
+    opacity: 0.9;
 }
 
 .register-photo form .btn-primary:active {

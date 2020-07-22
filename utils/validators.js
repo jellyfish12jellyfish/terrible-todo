@@ -41,3 +41,15 @@ exports.resetPasswordValidators = [
         .isLength({min: 8, max: 50})
         .isAlphanumeric().trim()
 ];
+
+exports.sendContactEmailValidators = [
+    body('email').isEmail().withMessage("Введите корректный email адрес")
+        .normalizeEmail().trim(),
+
+    body('name', 'Имя должно быть не менее 3 символов').isLength({min: 3, max: 50})
+        .trim(),
+
+    body('message', 'Длина сообщения минимум 10 символов').isLength({
+        min: 10, max: 250
+    }).trim()
+];

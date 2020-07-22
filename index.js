@@ -13,12 +13,14 @@ const homeRoutes = require('./routes/home');
 const authRoutes = require('./routes/auth');
 const addRoutes = require('./routes/add');
 const todoRoutes = require('./routes/todo');
+const contactRoutes = require('./routes/contact');
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
 const fileMiddleware = require('./middleware/file');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const Handlebars = require('handlebars');
 const rateLimit = require('express-rate-limit');
+const errorHanlder = require('./routes/error');
 
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -68,7 +70,9 @@ app.use('/', homeRoutes);
 app.use('/auth', authRoutes);
 app.use('/add', addRoutes);
 app.use('/todo', todoRoutes);
+app.use('/contact', contactRoutes);
 
+app.use(errorHanlder);
 
 const PORT = process.env.PORT || 3000;
 
@@ -91,15 +95,21 @@ async function start() {
 start();
 
 /*
-todo 1: сделать классы селект для навбара,
-todo 2: переверстать профиль, туду, "выберите файл", сброс пароля, почту, добавить favicon
+todo 2: переверстать профиль, туду, "выберите файл", сброс пароля, почту
 todo 3: заняться с чарт.жс
-todo 4: оживить контакт форм, "забыли пароль"
+todo валидация для отправки почты
 todo 5: прижать футер к низу страницы
-todo create 404.hbs
 todo добавить время создания тудушки, поработать с классом Intl
 todo верстка страницы лимита
 todo запретить формам запоминать данные
 todo стилизация отсутствия тудушек
 todo возможно, стоит переписать некоторые вещи на аякс
+todo страница об успешном запросе на сброс пароля
+todo страница об успешной отправке почты
+todo верстка not-found-404.hbs
+todo создать стили для ошибок
+todo ссылки на футере: придумать, что с ними делать
+todo сохранить данные в формах при выкидывании ошибок
+todo форма отправки контакт-имейл: запретить кнопку отправить, если не все поля заполнены
+todo логин, рег: set to disable sign in & sign up buttons if fields are empty
  */

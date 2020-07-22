@@ -1,4 +1,4 @@
-.my-chart{
+.my-chart {
     display: flex;
     flex-direction: row;
 }
@@ -71,7 +71,8 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-.card{
+
+.card {
     min-height: 900px;
 }
 
@@ -105,4 +106,7 @@
 .file:focus + label {
     outline: 1px dotted #000;
 }
-/*todo создать стили для ошибок*/
+
+body > nav > div > a.selected{
+    text-decoration: underline;
+}
