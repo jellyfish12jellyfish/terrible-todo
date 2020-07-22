@@ -176,6 +176,11 @@ img.empty-todo-svg {
     padding-left: 10px;
 }
 
+.delete-btn:active, .delete-btn:focus, .delete-btn {
+    outline: none;
+    border: none;
+}
+
 .delete-btn:hover {
     opacity: 0.7;
 }
@@ -186,4 +191,12 @@ img.empty-todo-svg {
 
 .edit-btn:hover {
     opacity: 0.7;
+}
+
+table {
+    box-shadow: 0 0 8px 2px #d5d5d5;
+}
+
+.empty-todos {
+    box-shadow: 0 0 8px 2px #d5d5d5;
 }
