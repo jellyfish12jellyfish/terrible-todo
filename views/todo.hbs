@@ -33,20 +33,11 @@
                                 <tr>
                                     <td class="deleteAfter">{{title}}</td>
                                     <td style="float: right" class="td">
-                                        <span style="margin-right: 20px" class="toDate">{{updatedAt}}</span>
+                                        <span style="margin-right: 20px" class="toDate">{{createdAt}}</span>
                                         <span><a href="/todo/{{_id}}/edit?allow=true"><i
                                                 class="large material-icons edit-btn">edit</i></a>
                                     </span>
-                                        <span>
-                                        <form action="/todo/delete" method="post">
-                                            <input type="hidden" name="id" value="{{todo._id}}">
-                                            <p>{{_id}}</p>
-                                            <input type="hidden" name="_csrf" value="{{@root.csrf}}">
 
-                                            <button type="submit" class="delete-btn"><i
-                                                    class="material-icons">delete_forever</i></button>
-                                        </form>
-                                    </span>
                                     </td>
                                 </tr>
                             {{else}}
