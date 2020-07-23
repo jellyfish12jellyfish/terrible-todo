@@ -1,8 +1,9 @@
 const {Router} = require('express');
 const router = Router();
 const Todo = require('../models/todo');
-const User = require('../models/user');
 const auth = require('../middleware/auth');
+const {validationResult} = require('express-validator');
+const {todoValidators} = require('../utils/validators');
 
 function isOwner(todo, req) {
     return todo.userId.toString() === req.user._id.toString();
@@ -11,8 +12,6 @@ function isOwner(todo, req) {
 router.get('/', auth, async (req, res) => {
 
     try {
-        const todoLength = await Todo.find();
-
         const todo = await Todo.find().populate('userId')
 
         res.render('todo', {
@@ -53,17 +52,24 @@ router.get('/:id/edit', auth, async (req, res) => {
 
         res.render('edit', {
             title: `Редактировать ${todo.title}`,
-            todo
+            todo,
+            error: req.flash('error')
         });
     } catch (e) {
         console.log(e);
     }
 });
 
-router.post('/edit', auth, async (req, res) => {
+router.post('/edit', todoValidators, auth, async (req, res) => {
     const {id} = req.body;
 
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            req.flash('error', 'Минимум  3 символа!');
+            return res.status(422).redirect(`/todo/${id}/edit?allow=true`);
+        }
+
         delete req.body.id;
         const todo = await Todo.findById(id);
 

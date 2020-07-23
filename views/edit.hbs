@@ -1,22 +1,35 @@
+{{#if error}}
+    <p class="alert">{{error}}</p>
+{{/if}}
+
 <div class="container">
-    <h1>{{todo.title}}</h1>
+    <h2 style="text-align: center">Редактировать "{{todo.title}}"</h2>
 
-    <form action="/todo/edit" method="post">
-        <div class="form-group">
-            <input type="text" id="title" name="title" value="{{todo.title}}">
 
-            <input type="hidden" name="id" value="{{todo._id}}">
-            <button type="submit" class="btn btn-primary">Обновить</button>
+
+    <div class="delete-update-forms" style="margin: 0 auto; padding: 20px 0;">
+        <div align="center" class="col-xs-1">
+            <form action="/todo/edit" method="post">
+                <div class="form-group col-sm-6">
+                    <input type="text" id="title" class="form-control" name="title" value="{{todo.title}}" autofocus required minlength="3" maxlength="100">
+                    <small id="emailHelp" class="form-text text-muted">Внесите корректировки для обновления todo. <a
+                            href="../">Отменить</a></small>
+                    <br>
+                    <input type="hidden" name="id" value="{{todo._id}}">
+                    <input type="hidden" name="_csrf" value="{{csrf}}">
+                    <button type="submit" class="btn btn-primary">ОБНОВИТЬ</button>
+                </div>
+            </form>
         </div>
 
-        <input type="hidden" name="_csrf" value="{{csrf}}">
-    </form>
+        <div align="center" class="col-xs-1" style="padding-bottom: 50px">
+            <form action="/todo/delete" method="post">
+                <input type="hidden" name="id" value="{{todo._id}}">
+                <button type="submit" class="btn btn-danger">УДАЛИТЬ</button>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
 
-    <form action="/todo/delete" method="post">
-        <input type="hidden" name="id" value="{{todo._id}}">
-        <button type="submit" class="btn btn-primary"><i class="large material-icons">check_circle</i>
-        </button>
+            </form>
+        </div>
+    </div>
 
-        <input type="hidden" name="_csrf" value="{{csrf}}">
-    </form>
 </div>
