@@ -91,7 +91,6 @@ html, body {
 }
 
 
-
 .file {
     width: 0.1px;
     height: 0.1px;
@@ -197,7 +196,15 @@ table {
 .empty-todos {
     box-shadow: 0 0 8px 2px #d5d5d5;
 }
-th{
+
+th {
     margin-bottom: 0;
     border: none !important;
+}
+
+.table-scroll {
+    min-height: 300px;
+    max-height: 800px;
+    overflow: auto;
+    margin-bottom: 120px;
 }

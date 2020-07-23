@@ -1,9 +1,11 @@
 {{#if error}}
     <p class="alert">{{error}}</p>
 {{/if}}
+
+
 <div class="my-chart">
     <div class="container">
-        <form action="/add" method="post" autocomplete="off" autofocus>
+        <form action="/add" method="post" autocomplete="off" autofocus id="isTodo">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <button type="submit" class="btn btn-secondary" style="border-radius: 0">ДОБАВИТЬ</button>
@@ -15,80 +17,68 @@
             <input type="hidden" name="_csrf" value="{{csrf}}">
         </form>
 
-
-        <table class="table table-striped">
-        <thead class="thead">
-            {{#if todo.length}}
-            <tr>
-                <th>Название</th>
-                <th style="float: right">Дата и опции</th>
-            </tr>
-            </thead>
-                <tbody>
-                {{#each todo}}
-                    {{#if @root.isAuth}}
-                        {{#ifeq userId._id @root.userId}}
-                            <tr>
-                                <td>{{title}}</td>
-                                <td style="float: right" class="td">
-                                    <span style="margin-right: 20px" class="toDate">{{updatedAt}}</span>
-                                    <span><a href="/todo/{{_id}}/edit?allow=true"><i
-                                            class="large material-icons edit-btn">edit</i></a>
+        <div class="table-scroll">
+            <table class="table table-striped">
+            <thead class="thead">
+                {{#if todo.length}}
+                <tr>
+                    <th>Название</th>
+                    <th style="float: right">Дата и опции</th>
+                </tr>
+                </thead>
+                    <tbody>
+                    {{#each todo}}
+                        {{#if @root.isAuth}}
+                            {{#ifeq userId._id @root.userId}}
+                                <tr>
+                                    <td class="deleteAfter">{{title}}</td>
+                                    <td style="float: right" class="td">
+                                        <span style="margin-right: 20px" class="toDate">{{updatedAt}}</span>
+                                        <span><a href="/todo/{{_id}}/edit?allow=true"><i
+                                                class="large material-icons edit-btn">edit</i></a>
                                     </span>
-                                    <span>
+                                        <span>
                                         <form action="/todo/delete" method="post">
                                             <input type="hidden" name="id" value="{{todo._id}}">
+                                            <p>{{_id}}</p>
                                             <input type="hidden" name="_csrf" value="{{@root.csrf}}">
 
                                             <button type="submit" class="delete-btn"><i
                                                     class="material-icons">delete_forever</i></button>
                                         </form>
                                     </span>
-                                </td>
-                            </tr>
-                        {{else}}
-                            <div>
-                                <!--                                <div class="empty-todos">-->
-                                <!--                                    <img class="empty-todo-svg" src="/img/book.svg" alt="No todos yet">-->
-                                <!--                                    <p>Список пустует :(</p>-->
-                                <!--                                </div>-->
-                            </div>
-                        {{/ifeq}}
-                    {{/if}}
-                {{/each}}
-                </tbody>
+                                    </td>
+                                </tr>
+                            {{else}}
+                                <tr style="display: none">
+                                    <td class="deleteAfter"></td>
+                                    <td style="float: right" class="td"></td>
+                                </tr>
+                            {{/ifeq}}
+                        {{/if}}
+                    {{/each}}
+                    </tbody>
 
-            {{else}}
-                <div>
-                    <div class="empty-todos">
-                        <img class="empty-todo-svg" src="/img/book.svg" alt="No todos yet">
-                        <p style="margin: 0; padding: 20px">Список пустует :(</p>
+                    <p style="display: none" id="todo-length-chart">{{todoLength}}</p>
+
+                {{else}}
+                    <div>
+                        <div class="empty-todos">
+                            <img class="empty-todo-svg" src="/img/book.svg" alt="No todos yet">
+                            <p style="margin: 0; padding: 20px">Список пустует :(</p>
+                        </div>
                     </div>
-                </div>
-            {{/if}}
-        </table>
+                {{/if}}
+            </table>
+        </div>
 
-        <div class="col-lg-7 col-xl-4">
+        <div class="">
             <div class="card shadow mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="text-primary font-weight-bold m-0">Earnings Overview</h6>
-                    <div class="dropdown no-arrow">
-                        <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false"
-                                type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                        <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
-                             role="menu">
-                            <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item"
-                                                                                          role="presentation"
-                                                                                          href="#"> Action</a><a
-                                class="dropdown-item" role="presentation" href="#"> Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" role="presentation" href="#"> Something else here</a></div>
-                    </div>
+                    <h6 class="text-secondary font-weight-bold m-0">Немного статистики</h6>
                 </div>
                 <div class="card-body">
-                    <div class="chart-area">
-                        <canvas height="324" width="367" style="display: block; height: 321px; width: 364px;"></canvas>
-                    </div>
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
         </div>

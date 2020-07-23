@@ -12,14 +12,17 @@ function isOwner(todo, req) {
 router.get('/', auth, async (req, res) => {
 
     try {
-        const todo = await Todo.find().populate('userId')
+        const todo = await Todo.find().populate('userId');
+        let todoLength = todo.length;
+
 
         res.render('todo', {
             title: 'Todo',
             isTodo: true,
             userId: req.user ? req.user._id.toString() : null,
             todo,
-            error: req.flash('addError')
+            error: req.flash('addError'),
+            todoLength
         });
     } catch (e) {
         console.log(e);
