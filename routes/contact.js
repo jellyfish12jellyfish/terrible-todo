@@ -26,10 +26,11 @@ router.post('/', sendContactEmailValidators, async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             req.flash('sendContactEmailError', errors.array()[0].msg);
-            res.status(422).redirect('/');
+            res.status(422).redirect('/#contactToUs');
         }
 
-        res.redirect('/');
+        req.flash('success', 'Сообщение успешно отправлено!');
+        res.redirect('/#contactToUs');
         await transporter.sendMail(contactEmail(email, name, message));
     } catch (e) {
         console.log(e);

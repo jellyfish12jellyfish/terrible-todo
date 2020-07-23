@@ -32,20 +32,34 @@
     </div>
 </div>
 
-{{#if sendContactEmailError}}
-    <p class="alert">{{sendContactEmailError}}</p>
-{{/if}}
 
 <div class="contact-clean" style="margin-top: 100px;">
+
+
     <form method="post" action="/contact" id="contactToUs">
         <h2 class="text-center">Связаться с нами</h2>
-        <div class="form-group"><input onkeyup="empty()" class="form-control" type="text" id="name" name="name" placeholder="Имя" required minlength="3" maxlength="50"></div>
+
+        {{#if success}}
+            <div class="alert alert-success" role="alert">
+                {{success}}
+            </div>
+        {{/if}}
+
+        {{#if sendContactEmailError}}
+            <div class="alert alert-danger" role="alert">
+                {{sendContactEmailError}}
+            </div>
+        {{/if}}
+
+        <div class="form-group"><input onkeyup="empty()" class="form-control" type="text" id="name" name="name"
+                                       placeholder="Имя" required minlength="3" maxlength="50"></div>
         <div class="form-group"><input onkeyup="empty()" class="form-control" id="email" type="email" name="email"
                                        placeholder="Email" required></div>
-        <div class="form-group"><textarea onkeyup="empty()" class="form-control" id="message" name="message" placeholder="Сообщение"
+        <div class="form-group"><textarea onkeyup="empty()" class="form-control" id="message" name="message"
+                                          placeholder="Сообщение"
                                           rows="14" required minlength="10" maxlength="250"></textarea></div>
         <div class="form-group">
-            <button disabled id="submit" class="btn btn-primary" type="submit">отправить&nbsp;</button>
+            <button id="submit" class="btn btn-primary" type="submit">отправить&nbsp;</button>
         </div>
 
         <input type="hidden" name="_csrf" value="{{csrf}}">

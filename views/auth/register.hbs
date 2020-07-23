@@ -1,28 +1,37 @@
-{{#if registerError}}
-    <p class="alert">{{registerError}}</p>
-{{/if}}
+<div class="container">
+    <div class="register-photo">
+        <div class="form-container">
+            <div class="image-holder"></div>
+            <form method="post" action="/auth/register" autocomplete="off" id="register" novalidate>
+                <h2 class="text-center"><strong>Создать</strong>&nbsp;аккаунт</h2>
+                <div class="form-group"><input class="form-control" type="email" id="email" name="email"
+                                               placeholder="Email" required></div>
+                <div class="form-group"><input class="form-control" required type="text" name="name" id="name"
+                                               placeholder="Имя" minlength="3" maxlength="50">
+                </div>
+                <div class="form-group"><input class="form-control" minlength="8" maxlength="50" required
+                                               type="password"
+                                               name="password" id="password"
+                                               placeholder="Пароль">
+                </div>
+                <div class="form-group"><input class="form-control" required type="password" name="confirm" id="confirm"
+                                               placeholder="Повторить пароль" minlength="8" maxlength="50"></div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
+                </div>
+                <a class="already" href="/auth/login/#logIn">Есть аккаунт? Войти</a>
 
-<div class="register-photo">
-    <div class="form-container">
-        <div class="image-holder"></div>
-        <form method="post" action="/auth/register" autocomplete="off">
-            <h2 class="text-center"><strong>Создать</strong>&nbsp;аккаунт</h2>
-            <div class="form-group"><input class="form-control" type="email" id="email" name="email"
-                                           placeholder="Email" required></div>
-            <div class="form-group"><input class="form-control" required type="text" name="name" id="name"
-                                           placeholder="Имя" minlength="3" maxlength="50">
-            </div>
-            <div class="form-group"><input class="form-control" minlength="8" maxlength="50" required type="password" name="password" id="password"
-                                           placeholder="Пароль">
-            </div>
-            <div class="form-group"><input class="form-control" required type="password" name="confirm" id="confirm"
-                                           placeholder="Повторить пароль" minlength="8" maxlength="50"></div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
-            </div>
-            <a class="already" href="/auth/login">Есть аккаунт? Войти</a>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+            </form>
+        </div>
 
-            <input type="hidden" name="_csrf" value="{{csrf}}">
-        </form>
+        <div align="center" class="col-xs-1">
+            <div class="form-container">
+                {{#if registerError}}
+                <div class="alert alert-danger" role="alert" style="margin: 0">
+                    {{registerError}}
+                </div>
+            {{/if}}
+        </div>
     </div>
 </div>

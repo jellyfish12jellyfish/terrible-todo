@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
     res.render('index', {
         title: 'Главная',
         isHome: true,
-        sendContactEmailError: req.flash('sendContactEmailError')
+        sendContactEmailError: req.flash('sendContactEmailError'),
+        success: req.flash('success')
     });
 });
 

@@ -65,11 +65,11 @@ router.post('/login', async (req, res) => {
                 });
             } else {
                 req.flash('loginError', 'Неверный пароль');
-                res.redirect('/auth/login');
+                res.redirect('/auth/login/#logIn');
             }
         } else {
-            req.flash('loginError', 'Пользователь с таким email не существует')
-            res.redirect('/auth/login');
+            req.flash('loginError', 'Email не найден')
+            res.redirect('/auth/login/#logIn');
         }
 
     } catch (e) {
@@ -84,7 +84,7 @@ router.post('/register', registerValidators, async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             req.flash('registerError', errors.array()[0].msg);
-            return res.status(422).redirect('/auth/register');
+            return res.status(422).redirect('/auth/register/#register');
         }
 
         const hashPassword = await bcrypt.hash(password, 10);
