@@ -15,7 +15,6 @@ router.get('/', auth, async (req, res) => {
         const todo = await Todo.find().populate('userId');
         let todoLength = todo.length;
 
-
         res.render('todo', {
             title: 'Todo',
             isTodo: true,
@@ -30,9 +29,10 @@ router.get('/', auth, async (req, res) => {
 });
 
 router.post('/delete', auth, async (req, res) => {
+    const {id} = req.body;
     try {
         await Todo.deleteOne({
-            id: req.body._id,
+            _id: id,
             userId: req.user._id
         });
         res.redirect('/todo');
@@ -64,7 +64,7 @@ router.get('/:id/edit', auth, async (req, res) => {
 });
 
 router.post('/edit', todoValidators, auth, async (req, res) => {
-    const {id} = req.body;
+    const {id} = req.body
 
     try {
         const errors = validationResult(req);

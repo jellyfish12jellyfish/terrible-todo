@@ -37,10 +37,18 @@
                                         <span><a href="/todo/{{_id}}/edit?allow=true"><i
                                                 class="large material-icons edit-btn">edit</i></a>
                                     </span>
-
+                                        <span>
+                                        <form action="/todo/delete" method="post">
+                                            <input type="hidden" name="id" value="{{_id}}">
+                                            <input type="hidden" name="_csrf" value="{{@root.csrf}}">
+                                            <button type="submit" class="delete-btn"><i
+                                                    class="large material-icons edit-btn">delete_forever</i></button>
+                                        </form>
+                                            </span>
                                     </td>
                                 </tr>
                             {{else}}
+
                                 <tr style="display: none">
                                     <td class="deleteAfter"></td>
                                     <td style="float: right" class="td"></td>
