@@ -20,7 +20,7 @@ router.get('/', auth, async (req, res) => {
             isTodo: true,
             userId: req.user ? req.user._id.toString() : null,
             todo,
-            error: req.flash('addError'),
+            error: req.flash('error'),
             todoLength
         });
     } catch (e) {

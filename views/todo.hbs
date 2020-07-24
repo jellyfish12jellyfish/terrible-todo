@@ -1,12 +1,12 @@
-{{#if error}}
-    <p class="alert">{{error}}</p>
-{{/if}}
-
-
 <div class="my-chart">
-    <div class="container">
+    <div class="container" id="isTodo">
+        {{#if error}}
+            <div class="alert alert-danger" role="alert" align="center">
+                {{error}}
+            </div>
+        {{/if}}
         <div class="wrap">
-            <form action="/add" method="post" autocomplete="off" autofocus id="isTodo" style="box-shadow: 0 0 8px 1px #b3b3b3;
+            <form action="/add" method="post" autofocus autocomplete="off" style="box-shadow: 0 0 8px 1px #b3b3b3;
 ">
                 <div class="input-group">
                     <div class="input-group-prepend">
@@ -34,7 +34,10 @@
                             {{#if @root.isAuth}}
                                 {{#ifeq userId._id @root.userId}}
                                     <tr class="tr-table">
-                                        <td class="deleteAfter">{{title}}</td>
+                                        <td class="deleteAfter">
+                                            <p class="title-without-link">{{title}}</p>
+                                            <a class="title-with-link" href="/todo/{{_id}}/edit?allow=true">{{title}}</a>
+                                        </td>
                                         <td style="float: right" class="td">
                                             <span style="margin-right: 20px" class="toDate">{{updatedAt}}</span>
                                             <span class="hide"><a href="/todo/{{_id}}/edit?allow=true"><i
