@@ -130,11 +130,13 @@ html, body {
     opacity: 1;
     box-shadow: 0 -3px rgb(182, 182, 182) inset;
 }
-.label-file:hover{
+
+.label-file:hover {
     opacity: 90%;
     transition: 0.2s;
 }
-.label-file:active{
+
+.label-file:active {
     box-shadow: 0 3px rgb(161, 161, 161) inset;
 }
 
@@ -315,4 +317,8 @@ td.td {
     }
 
 
+}
+
+.title-without-link {
+    margin: 0 !important;
 }
