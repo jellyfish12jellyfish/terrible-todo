@@ -12,7 +12,7 @@ function isOwner(todo, req) {
 router.get('/', auth, async (req, res) => {
 
     try {
-        const todo = await Todo.find().populate('userId');
+        const todo = await Todo.find().populate('userId').sort({updatedAt: -1});
         let todoLength = todo.length;
 
         res.render('todo', {

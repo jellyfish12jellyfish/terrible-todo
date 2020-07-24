@@ -5,70 +5,74 @@
 
 <div class="my-chart">
     <div class="container">
-        <form action="/add" method="post" autocomplete="off" autofocus id="isTodo">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <button type="submit" class="btn btn-secondary" style="border-radius: 0">ДОБАВИТЬ</button>
+        <div class="wrap">
+            <form action="/add" method="post" autocomplete="off" autofocus id="isTodo" style="box-shadow: 0 0 8px 1px #b3b3b3;
+">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-secondary" style="border-radius: 0">ДОБАВИТЬ</button>
+                    </div>
+                    <input style="border-radius: 0" autofocus required type="text" name="title" id="title"
+                           class="form-control"
+                           aria-label="Text input with radio button" minlength="3" maxlength="100">
                 </div>
-                <input autofocus required type="text" name="title" id="title" class="form-control"
-                       aria-label="Text input with radio button" minlength="3" maxlength="100">
-            </div>
 
-            <input type="hidden" name="_csrf" value="{{csrf}}">
-        </form>
+                <input type="hidden" name="_csrf" value="{{csrf}}">
+            </form>
 
-        <div class="table-scroll">
-            <table class="table table-striped">
-            <thead class="thead">
-                {{#if todo.length}}
-                <tr>
-                    <th>Название</th>
-                    <th style="float: right">Дата и опции</th>
-                </tr>
-                </thead>
-                    <tbody>
-                    {{#each todo}}
-                        {{#if @root.isAuth}}
-                            {{#ifeq userId._id @root.userId}}
-                                <tr>
-                                    <td class="deleteAfter">{{title}}</td>
-                                    <td style="float: right" class="td">
-                                        <span style="margin-right: 20px" class="toDate">{{createdAt}}</span>
-                                        <span><a href="/todo/{{_id}}/edit?allow=true"><i
-                                                class="large material-icons edit-btn">edit</i></a>
-                                    </span>
-                                        <span>
+            <div class="table-scroll">
+                <table class="table table-striped">
+                <thead class="thead">
+                    {{#if todo.length}}
+                    <tr>
+                        <th>Название</th>
+                        <th style="float: right">Дата и опции</th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                        {{#each todo}}
+                            {{#if @root.isAuth}}
+                                {{#ifeq userId._id @root.userId}}
+                                    <tr class="tr-table">
+                                        <td class="deleteAfter">{{title}}</td>
+                                        <td style="float: right" class="td">
+                                            <span style="margin-right: 20px" class="toDate">{{updatedAt}}</span>
+                                            <span class="hide"><a href="/todo/{{_id}}/edit?allow=true"><i
+                                                    class="large material-icons edit-btn">edit</i></a>
+
+                                        </span>
+
+                                            <span class="hide">
                                         <form action="/todo/delete" method="post">
                                             <input type="hidden" name="id" value="{{_id}}">
                                             <input type="hidden" name="_csrf" value="{{@root.csrf}}">
                                             <button type="submit" class="delete-btn"><i
                                                     class="large material-icons edit-btn">delete_forever</i></button>
                                         </form>
-                                            </span>
-                                    </td>
-                                </tr>
-                            {{else}}
+                                        </span>
 
-                                <tr style="display: none">
-                                    <td class="deleteAfter"></td>
-                                    <td style="float: right" class="td"></td>
-                                </tr>
-                            {{/ifeq}}
-                        {{/if}}
-                    {{/each}}
-                    </tbody>
+                                        </td>
+                                    </tr>
+                                {{else}}
+                                    <div style="display: none">
+                                    </div>
+                                {{/ifeq}}
+                            {{/if}}
+                        {{/each}}
+                        </tbody>
 
-                    <p style="display: none" id="todo-length-chart">{{todoLength}}</p>
+                        <p style="display: none" id="todo-length-chart">{{todoLength}}</p>
 
-                {{else}}
-                    <div>
-                        <div class="empty-todos">
-                            <img class="empty-todo-svg" src="/img/book.svg" alt="No todos yet">
-                            <p style="margin: 0; padding: 20px">Список пустует :(</p>
+                    {{else}}
+                        <div>
+                            <div class="empty-todos">
+                                <img class="empty-todo-svg" src="/img/book.svg" alt="No todos yet">
+                                <p style="margin: 0; padding: 20px">Список пустует :(</p>
+                            </div>
                         </div>
-                    </div>
-                {{/if}}
-            </table>
+                    {{/if}}
+                </table>
+            </div>
         </div>
 
         <div class="">

@@ -190,7 +190,7 @@ img.empty-todo-svg {
 }
 
 table {
-    box-shadow: 0 0 8px 2px #d5d5d5;
+    box-shadow: 0 0 9px 1px #b3b3b3;
 }
 
 .empty-todos {
@@ -207,4 +207,24 @@ th {
     max-height: 800px;
     overflow: auto;
     margin-bottom: 120px;
+    padding: 0 5px;
+}
+
+.deleteAfter {
+    border: 0 !important;
+}
+
+td.td {
+    border: 0 !important;
+}
+
+/*.tr-table:hover {*/
+/*    -webkit-transform: scale(1.1);*/
+/*    -ms-transform: scale(1.1);*/
+/*    transform: scale(1.1);*/
+/*}*/
+
+.deleteAfter:hover{
+    transition: 1s;
+    color: #7d7d7d;
 }
