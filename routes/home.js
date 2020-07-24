@@ -2,6 +2,8 @@ const {Router} = require('express');
 const router = Router();
 const auth = require('../middleware/auth');
 const User = require('../models/user');
+const {validationResult} = require('express-validator');
+const {nameValidators} = require('../utils/validators');
 
 
 router.get('/', (req, res) => {
@@ -18,12 +20,20 @@ router.get('/profile', auth, (req, res) => {
     res.render('profile', {
         title: 'Профиль',
         isProfile: true,
-        user: req.user.toObject()
+        user: req.user.toObject(),
+        error: req.flash('error')
     });
 });
 
-router.post('/profile', auth, async (req, res) => {
+router.post('/profile', auth, nameValidators, async (req, res) => {
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            req.flash('error', errors.array()[0].msg);
+            return res.status(422).redirect('/profile/#profile');
+        }
+
+
         const user = await User.findById(req.user._id);
         const toChange = {
             name: req.body.name

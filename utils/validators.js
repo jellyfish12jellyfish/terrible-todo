@@ -58,3 +58,8 @@ exports.resetPasswordWithEmailValidators = [
     body('email').isEmail().withMessage('Введите корректный email адрес')
         .normalizeEmail().trim()
 ];
+
+exports.nameValidators=[
+    body('name', 'Имя должно быть не менее 3 символов!').isLength({min:3, max:50})
+        .trim()
+]

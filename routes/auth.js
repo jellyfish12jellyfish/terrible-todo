@@ -41,7 +41,7 @@ router.get('/register', async (req, res) => {
     res.render('auth/register', {
         title: 'Регистрация',
         isRegister: true,
-        registerError: req.flash('registerError')
+        registerError: req.flash('registerError'),
     });
 });
 
@@ -84,7 +84,15 @@ router.post('/register', registerValidators, async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             req.flash('registerError', errors.array()[0].msg);
-            return res.status(422).redirect('/auth/register/#register');
+            return res.status(422).render('auth/register', {
+                anchor: 'register',
+                title: 'Регистрация',
+                data: {
+                    email: req.body.email,
+                    name: req.body.name
+                },
+                registerError: req.flash('registerError')
+            });
         }
 
         const hashPassword = await bcrypt.hash(password, 10);
@@ -94,7 +102,7 @@ router.post('/register', registerValidators, async (req, res) => {
             password: hashPassword
         });
         await user.save();
-        res.redirect('/auth/login');
+        res.redirect('/auth/login/#login');
         await transporter.sendMail(regEmail(email));
     } catch (e) {
         console.log(e);

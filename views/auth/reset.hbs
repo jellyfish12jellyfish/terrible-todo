@@ -1,11 +1,11 @@
-{{#if error}}
-    <p class="alert">{{error}}</p>
-{{/if}}
-
-
 <div class="login-clean-reset">
     <form action="/auth/reset" method="post">
         <h3>Забыли пароль?</h3>
+        {{#if error}}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+        {{/if}}
 
         <div class="form-group">
 

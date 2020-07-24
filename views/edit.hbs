@@ -1,15 +1,18 @@
-{{#if error}}
-    <p class="alert">{{error}}</p>
-{{/if}}
-
 <div class="container">
-    <h2 style="text-align: center">Редактировать "{{todo.title}}"</h2>
+    <h3 style="text-align: center">Редактировать "{{todo.title}}"</h3>
 
     <div class="delete-update-forms" style="margin: 0 auto; padding: 20px 0;">
         <div align="center" class="col-xs-1">
+
             <form action="/todo/edit" method="post">
-                <div class="form-group col-sm-6">
-                    <input type="text" id="title" class="form-control" name="title" value="{{todo.title}}" autofocus required minlength="3" maxlength="100">
+                <div class="form-group col-sm-10">
+                    {{#if error}}
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
+                    {{/if}}
+                    <input type="text" id="title" class="form-control" name="title" value="{{todo.title}}" autofocus
+                           required minlength="3" maxlength="100">
                     <small id="emailHelp" class="form-text text-muted">Внесите корректировки для обновления todo. <a
                             href="../">Отменить</a></small>
                     <br>
