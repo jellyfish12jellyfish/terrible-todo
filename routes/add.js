@@ -11,7 +11,7 @@ router.post('/', auth, todoValidators, async (req, res) => {
     try {
         if (!errors.isEmpty()) {
             req.flash('error', 'Минимум 3 символа!')
-            return res.status(422).redirect('/todo/#isTodo');
+            return res.status(422).redirect('/todo/');
         }
         const todoLength = await Todo.find();
         if (todoLength.length >= 100) {
@@ -27,7 +27,7 @@ router.post('/', auth, todoValidators, async (req, res) => {
         });
 
         await todo.save();
-        res.redirect('/todo/#isTodo');
+        res.redirect('/todo/');
     } catch
         (e) {
         console.log(e);
