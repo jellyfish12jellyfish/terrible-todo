@@ -1,0 +1,32 @@
+<div class="myChart">
+    <div class="container">
+        <p style="display: none" id="todo-length-chart">{{todoLength}}</p>
+        <div style="display:none;">
+            {{#if todo.length}}
+                {{#each todo}}
+                    {{#if @root.isAuth}}
+                        {{#ifeq userId._id @root.userId}}
+                            <p class="deleteAfter">{{title}}</p>
+                        {{else}}
+                            <div style="display: none">
+                            </div>
+                        {{/ifeq}}
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        </div>
+
+        <div class="">
+            <div class="card shadow mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="text-secondary font-weight-bold m-0">Немного статистики</h6>
+                </div>
+                <div class="card-body">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

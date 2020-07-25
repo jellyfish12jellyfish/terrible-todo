@@ -2,11 +2,11 @@
      style="margin-bottom: 80px;box-shadow: 3px -6px 20px 0px;">
     {{#if isAuth}}
     <div class="container">
-    {{#if isHome}}
-        <a class="navbar-brand selected" href="/">Главная</a>
-    {{else}}
-        <a class="navbar-brand" href="/">Главная</a>
-    {{/if}}
+        {{#if isHome}}
+            <a class="navbar-brand selected" href="/">Главная</a>
+        {{else}}
+            <a class="navbar-brand" href="/">Главная</a>
+        {{/if}}
 
         <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                 class="navbar-toggler-icon"></span></button>
@@ -15,17 +15,29 @@
         <ul class="nav navbar-nav d-flex justify-content-start align-items-start mr-auto">
             <li class="nav-item" role="presentation">
                 {{#if isTodo}}
-                <a class="nav-link text-secondary selected" style="text-decoration: underline; font-weight: bold" href="/todo/">Todo</a>
+                    <a class="nav-link text-secondary selected" style="text-decoration: underline; font-weight: bold"
+                       href="/todo/">Todo</a>
                 {{else}}
-                <a class="nav-link text-secondary" href="/todo/">Todo</a>
+                    <a class="nav-link text-secondary" href="/todo/">Todo</a>
+                {{/if}}
+            </li>
+
+            <li>
+                {{#if isChart}}
+                    <a class="nav-link text-secondary selected" style="text-decoration: underline; font-weight: bold"
+                       href="/chart">График</a>
+                {{else}}
+                    <a class="nav-link text-secondary" href="/chart">График</a>
                 {{/if}}
 
             </li>
+
             <li class="nav-item" role="presentation">
                 {{# if isProfile}}
-                <a style="text-decoration: underline; font-weight: bold" class="nav-link text-secondary" href="/profile">Профиль</a>
+                    <a style="text-decoration: underline; font-weight: bold" class="nav-link text-secondary"
+                       href="/profile">Профиль</a>
                 {{else}}
-                <a class="nav-link text-secondary" href="/profile">Профиль</a>
+                    <a class="nav-link text-secondary" href="/profile">Профиль</a>
                 {{/if}}
             </li>
         </ul>
@@ -62,7 +74,8 @@
                         <a class="btn btn-light action-button selected" role="button"
                            href="/auth/register/#register">Регистрация</a>
                     {{else}}
-                        <a class="btn btn-light action-button" role="button" href="/auth/register/#register">Регистрация</a>
+                        <a class="btn btn-light action-button" role="button"
+                           href="/auth/register/#register">Регистрация</a>
                     {{/if}}
                 </span>
             </div>

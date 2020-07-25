@@ -13,7 +13,6 @@ router.get('/', auth, async (req, res) => {
 
     try {
         const todo = await Todo.find().populate('userId').sort({updatedAt: -1});
-        let todoLength = todo.length;
 
         res.render('todo', {
             title: 'Todo',
@@ -21,7 +20,6 @@ router.get('/', auth, async (req, res) => {
             userId: req.user ? req.user._id.toString() : null,
             todo,
             error: req.flash('error'),
-            todoLength
         });
     } catch (e) {
         console.log(e);

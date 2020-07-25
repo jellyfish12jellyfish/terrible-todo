@@ -222,7 +222,7 @@ th {
 }
 
 .table-scroll {
-    min-height: 300px;
+    min-height: 700px;
     max-height: 800px;
     overflow: auto;
     margin-bottom: 120px;
@@ -321,4 +321,8 @@ td.td {
 
 .title-without-link {
     margin: 0 !important;
+}
+
+div.table-scroll{
+    font-size: 0.9rem !important;
 }

@@ -2,6 +2,7 @@ const {Router} = require('express');
 const router = Router();
 const auth = require('../middleware/auth');
 const User = require('../models/user');
+const Todo = require('../models/todo');
 const {validationResult} = require('express-validator');
 const {nameValidators} = require('../utils/validators');
 
@@ -14,7 +15,6 @@ router.get('/', (req, res) => {
         success: req.flash('success')
     });
 });
-
 
 router.get('/profile', auth, (req, res) => {
     res.render('profile', {
@@ -48,6 +48,23 @@ router.post('/profile', auth, nameValidators, async (req, res) => {
         await user.save();
         res.redirect('/profile');
 
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+router.get('/chart', auth, async (req, res) => {
+    try {
+        const todo = await Todo.find();
+        let todoLength = todo.length;
+
+        res.render('chart', {
+            title: 'График',
+            isChart: true,
+            todoLength,
+            todo,
+            userId: req.user ? req.user._id.toString() : null,
+        });
     } catch (e) {
         console.log(e);
     }

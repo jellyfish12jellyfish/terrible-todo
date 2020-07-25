@@ -6,13 +6,15 @@
             </div>
         {{/if}}
         <div class="wrap">
+
             <form action="/add" method="post" autocomplete="off" style="box-shadow: 0 0 8px 1px #b3b3b3;
 ">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button type="submit" class="btn btn-secondary" style="border-radius: 0">ДОБАВИТЬ</button>
                     </div>
-                    <input autofocus autocapitalize="on" style="border-radius: 0" required type="text" name="title" id="title"
+                    <input autofocus autocapitalize="on" style="border-radius: 0" required type="text" name="title"
+                           id="title"
                            class="form-control"
                            aria-label="Text input with radio button" minlength="3" maxlength="100">
                 </div>
@@ -26,7 +28,8 @@
                     {{#if todo.length}}
                     <tr>
                         <th>Название</th>
-                        <th style="float: right">Дата и опции</th>
+                        <th style="float: right">Дата и опции
+                        </th>
                     </tr>
                     </thead>
                         <tbody>
@@ -36,7 +39,8 @@
                                     <tr class="tr-table">
                                         <td class="deleteAfter">
                                             <p class="title-without-link">{{title}}</p>
-                                            <a class="title-with-link" href="/todo/{{_id}}/edit?allow=true">{{title}}</a>
+                                            <a class="title-with-link"
+                                               href="/todo/{{_id}}/edit?allow=true">{{title}}</a>
                                         </td>
                                         <td style="float: right" class="td">
                                             <span style="margin-right: 20px" class="toDate">{{updatedAt}}</span>
@@ -64,7 +68,6 @@
                         {{/each}}
                         </tbody>
 
-                        <p style="display: none" id="todo-length-chart">{{todoLength}}</p>
 
                     {{else}}
                         <div>
@@ -78,17 +81,5 @@
             </div>
         </div>
 
-        <div class="">
-            <div class="card shadow mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="text-secondary font-weight-bold m-0">Немного статистики</h6>
-                </div>
-                <div class="card-body">
-                    <canvas id="myChart"></canvas>
-                </div>
-            </div>
-        </div>
     </div>
-
-
 </div>

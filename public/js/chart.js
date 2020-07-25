@@ -1,6 +1,7 @@
 const ctx = document.getElementById('myChart').getContext('2d');
 let myData = document.getElementsByClassName('deleteAfter').length;
 let todoLengthChart = document.getElementById('todo-length-chart').innerHTML;
+console.log(myData)
 
 new Chart(ctx, {
     type: 'bar',
