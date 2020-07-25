@@ -222,8 +222,8 @@ th {
 }
 
 .table-scroll {
-    min-height: 700px;
-    max-height: 800px;
+    min-height: 500px;
+    max-height: 500px;
     overflow: auto;
     margin-bottom: 120px;
     padding: 0 5px;
