@@ -6,15 +6,16 @@ module.exports = function (email, name, message) {
         from: keys.MAIL_USER,
         subject: `${email} отправил почту!`,
         html: `
-<style>
-p{
-color: red;
-}
+         <style>
+         span{
+         font-weight: bold;
+         }
 </style>
+         
         <h1>Форма для контакта</h1>
-        <p>Имя: ${name}</p>
-        <p>Почта: ${email}</p>
-        <p>Сообщение: ${message}</p>
+        <p><span>Имя:</span> ${name}</p>
+        <p><span>Почта:</span> ${email}</p>
+        <p><span>Сообщение:</span> ${message}</p>
         <hr>
         `
     }
